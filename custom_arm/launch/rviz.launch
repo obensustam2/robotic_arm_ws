@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- Send urdf to param server -->
+    <param name="robot_description" textfile="$(find custom_arm)/urdf/custom_arm.urdf"/> 
+
+    <!-- Non-actuated joints -->
+    <node name="RSP" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+    
+    <!-- Actuated joints -->
+    <node name="JSP" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" output="screen"/>
+    
+    <!-- Rviz -->
+    <node name="RViZ" pkg="rviz" type="rviz" args="-d $(find custom_arm)/rviz/custom_arm.rviz"/>
+        
+</launch>
