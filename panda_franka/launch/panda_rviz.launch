@@ -3,7 +3,7 @@
 <launch>
 
     <!-- send urdf to param server -->
-    <param name="robot_description" textfile="$(find custom_arm)/urdf/custom_arm.urdf"/>
+    <param name="robot_description" textfile="$(find panda_franka)/urdf/panda_robot.urdf"/>
 
     <!-- Non-actuated joints -->
     <node pkg="robot_state_publisher"
@@ -22,6 +22,6 @@
     <node pkg="rviz"
         type="rviz" 
         name="RViZ" 
-        args="-d $(find custom_arm)/rviz/custom_arm.rviz"/>
+        args="-d $(find panda_franka)/rviz/panda.rviz"/>
         
 </launch>

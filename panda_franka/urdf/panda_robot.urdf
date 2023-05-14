@@ -1,23 +1,10 @@
 <?xml version='1.0'?>
-<!-- <?xml version='1.0' encoding='utf-8'?> -->
-<!-- <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda"> -->
+
 <robot name="panda">
 
-  <!-- =============================================================== -->
-  <!-- || This file does not contain official inertial properties   || -->
-  <!-- || of panda robot. The values are from the identification    || -->
-  <!-- || results published in: Identification of the Franka Emika  || -->
-  <!-- || PandaRobot With Retrieval of Feasible Parameters Using    || -->
-  <!-- || Penalty-Based Optimization                                || -->
-  <!-- || by: Claudio Gaz, Marco Cognetti, Alexander Oliva,         || -->
-  <!-- || Paolo Robuffo Giordano, Alessandro de Luca                || -->
-  <!-- =============================================================== -->
     <link name="world"/>
 
-    <joint name="fixed" type="fixed">
-        <parent link="world"/>
-        <child link="panda_link0"/>
-    </joint>
+<!-- ..................... Panda Link 0 & Fixed Joint........................................................... -->
 
     <link name="panda_link0">
         <visual>
@@ -33,13 +20,18 @@
             </geometry>
         </collision>
         <inertial>
-        
             <origin rpy="0 0 0" xyz="-0.041018 -0.00014 0.049974"/>
             <mass value="0.629769"/>
             <inertia ixx="0.00315" ixy="8.2904E-07" ixz="0.00015" iyy="0.00388" iyz="8.2299E-06" izz="0.004285" />
         </inertial>
     </link>
 
+    <joint name="fixed" type="fixed">
+        <parent link="world"/>
+        <child link="panda_link0"/>
+    </joint>
+
+<!-- ..................... Panda Link 1 & Panda Joint 1.......................................................... -->
 
     <link name="panda_link1">
         <visual>
@@ -71,6 +63,8 @@
         <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
     </joint>
 
+<!-- ..................... Panda Link 2 & Panda Joint 2 ......................................................... -->
+
     <link name="panda_link2">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -100,6 +94,8 @@
         <limit acceleration="7.5" lower="-1.8326" effort="87" upper="1.8326" velocity="2.5"/>
         <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
     </joint>
+
+<!-- ..................... Panda Link 3 & Panda Joint 3......................................................... -->
 
     <link name="panda_link3">
         <visual>
@@ -131,6 +127,8 @@
         <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
     </joint>
 
+<!-- ..................... Panda Link 4 & Panda Joint 4.......................................................... -->
+
     <link name="panda_link4">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -160,6 +158,8 @@
         <limit acceleration="12.5" lower="-3.1416" effort="87" upper="-0.4" velocity="2.5"/>
         <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
     </joint>
+
+<!-- ..................... Panda Link 5 & Panda Joint 5.......................................................... -->
 
     <link name="panda_link5">
         <visual>
@@ -191,6 +191,8 @@
         <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
     </joint>
 
+<!-- ..................... Panda Link 6 & Panda Joint 6......................................................... -->
+
     <link name="panda_link6">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -220,6 +222,8 @@
         <limit acceleration="20" lower="-0.0873" effort="12" upper="3.8223" velocity="3"/>
         <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
     </joint>
+
+<!-- ..................... Panda Link 7 & Panda Joint 7.......................................................... -->
 
     <link name="panda_link7">
         <visual>
@@ -251,6 +255,8 @@
         <dynamics D="1" K="7000" mu_coulomb="0" mu_viscous="16" damping="0.003" friction="0.0"/>
     </joint>
 
+<!-- ..................... Panda Link 8 & Panda Joint 8.......................................................... -->
+
     <link name="panda_link8" />
 
     <joint name="panda_joint8" type="fixed">
@@ -261,87 +267,81 @@
     </joint>
 
 
-<!-- PositionJointInterface -->
-<transmission name ="trans_1">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="panda_joint1">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_1">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </actuator>
-</transmission>
+<!-- ............................Transmission.................................................................... -->
 
-<transmission name ="trans_2">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="panda_joint2">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_2">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        
-    </actuator>
-</transmission>
-<transmission name ="trans_3">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="panda_joint3">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_3">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        
-    </actuator>
-</transmission>
-<transmission name ="trans_4">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="panda_joint4">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_4">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        
-    </actuator>
-</transmission>
+    <transmission name ="trans_1">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="panda_joint1">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_1">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
 
-<transmission name ="trans_5">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="panda_joint5">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_5">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        
-    </actuator>
-</transmission>
+    <transmission name ="trans_2">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="panda_joint2">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_2">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
 
-<transmission name ="trans_6">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="panda_joint6">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_6">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        
-    </actuator>
-</transmission>
+    <transmission name ="trans_3">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="panda_joint3">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_3">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
 
-<transmission name ="trans_7">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="panda_joint7">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="motor_7">
-        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
-        
-    </actuator>
-</transmission>
+    <transmission name ="trans_4">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="panda_joint4">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_4">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
 
+    <transmission name ="trans_5">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="panda_joint5">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_5">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
 
+    <transmission name ="trans_6">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="panda_joint6">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_6">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
 
+    <transmission name ="trans_7">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="panda_joint7">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="motor_7">
+            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        </actuator>
+    </transmission>
 
-<gazebo>
-    <plugin name="control" filename="libgazebo_ros_control.so"/>
-</gazebo>
+<!-- ...................Controller......................................... -->
 
-
+    <gazebo>
+        <plugin name="control" filename="libgazebo_ros_control.so"/>
+    </gazebo>
 </robot>

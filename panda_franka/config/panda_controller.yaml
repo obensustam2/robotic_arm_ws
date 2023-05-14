@@ -1,5 +1,6 @@
 panda_controller:
   type: "position_controllers/JointTrajectoryController"
+  
   joints:
     - panda_joint1
     - panda_joint2
@@ -8,8 +9,6 @@ panda_controller:
     - panda_joint5
     - panda_joint6
     - panda_joint7
-    # - panda_finger_joint1
-    # - panda_finger_joint2
   
   /gazebo_ros_control:
     pid_gains:
@@ -31,14 +30,14 @@ panda_controller:
     joint5: {trajectory: 0.01, goal: 0.05}
     joint6: {trajectory: 0.01, goal: 0.05}
     joint7: {trajectory: 0.01, goal: 0.05}
-    # finger_joint1: {trajectory: 0.05, goal: 0.05}
-    # finger_joint2: {trajectory: 0.05, goal: 0.05}
+
   #stop_trajectory_duration: 0.5 
   state_publish_rate:  2500
   action_monitor_rate: 10
   min_vel_x: 0.0
   min_vel_y: 0.0
   min_vel_z: 0.0
+
   max_val_x: 0.5
   max_val_y: 0.5
   max_val_z: 0.5

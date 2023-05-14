@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- send urdf to param server -->
+    <param name="robot_description" textfile="$(find panda_franka)/urdf/panda_robot.urdf"/>
+
+    <!-- Non-actuated joints -->
+    <node pkg="robot_state_publisher"   
+        type="robot_state_publisher" 
+        name="robot_state_publisher"
+    />
+
+    <!-- Launch Gazebo World -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="false"/>
+        <arg name="gui" value="true"/>
+        <arg name="headless" value="$false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+    <!-- Spawn robot -->
+    <node pkg="gazebo_ros" 
+        type="spawn_model"
+        name="spawn_urdf" 
+        args = "-param robot_description -urdf -model panda_robot_gazebo"
+    />
+
+    <!-- Load controller config -->
+    <rosparam command="load" file="$(find panda_franka)/config/panda_controller.yaml"/>
+
+    <!-- joint trajectory controller -->
+    <node pkg="controller_manager"
+        type="spawner"
+        name="panda_controller_spawner"
+        respawn="false" output="screen"
+        args="panda_controller"
+    />
+
+</launch>
