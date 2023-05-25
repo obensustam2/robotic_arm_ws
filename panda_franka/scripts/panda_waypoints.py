@@ -8,7 +8,7 @@ from spatialmath import SE3
 import numpy as np
 def action_interface():
 
-    rospy.init_node('dual_dual_arm_trajectorymsg_actionLib')
+    rospy.init_node('panda_trajectory_publisher')
     panda_joints = ['panda_joint1','panda_joint2','panda_joint3','panda_joint4','panda_joint5'
         ,'panda_joint6','panda_joint7']
         

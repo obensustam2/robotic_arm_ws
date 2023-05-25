@@ -12,35 +12,32 @@ sudo apt-get install ros-noetic-effort-controllers
 sudo apt-get install ros-noetic-position-controllers
 ```
 
-# Packages
-## custom_arm
+# Package: custom_arm
 
-### Rostopics
+## To control joints in open-loop with joint_state_publisher_gui in RViZ 
 ```bash
-/clock
-/custom_arm_controller/command
-/custom_arm_controller/follow_joint_trajectory/cancel
-/custom_arm_controller/follow_joint_trajectory/feedback
-/custom_arm_controller/follow_joint_trajectory/goal
-/custom_arm_controller/follow_joint_trajectory/result
-/custom_arm_controller/follow_joint_trajectory/status
-/custom_arm_controller/state
-/gazebo/link_states
-/gazebo/model_states
-/gazebo/parameter_descriptions
-/gazebo/parameter_updates
-/gazebo/performance_metrics
-/gazebo/set_link_state
-/gazebo/set_model_state
-/joint_states
-/rosout
-/rosout_agg
-/tf
-/tf_static
+roslaunch custom_arm rviz.launch
 ```
 
-### custom_arm_controller/command  
-- Type: trajectory_msgs/JointTrajectory
+## To launch robot in Gazebo and send joint trajectory to robot using terminal
+```bash
+roslaunch custom_arm gazebo_controller.launch
+rosrun custom_arm joint_angle.py <joint_1> <joint_2> <joint_3> <joint_4>
+```
+<p align="center">
+  <img width="733" height="326" src="custom_arm/pictures/gazebo_joint_command.png">
+  <br> Code Execution
+</p>
+
+<p align="center">
+  <img width="1817" height="521" src="custom_arm/pictures/gazebo_rosgraph.png">
+  <br> Node-Topic Graph
+</p>
+
+Topic: custom_arm_controller/command  
+
+Type: trajectory_msgs/JointTrajectory
+
 ```bash
 header: 
   seq: 1
@@ -55,65 +52,43 @@ joint_names:
   - joint_4
 points: 
   - 
-    positions: [0.4, 0.2, 0.4, 0.4]
+    positions: [0.83, -0.51, 0.95, 0]
     velocities: [0.0, 0.0, 0.0, 0.0]
     accelerations: [0.0, 0.0, 0.0, 0.0]
     effort: []
     time_from_start: 
       secs: 3
       nsecs:         0
----
 ```
 
-## panda_franka
+# Package: panda_franka
 
-### Rostopics
+## To control joints in open-loop with joint_state_publisher_gui in RViZ 
 ```bash
-/clock
-/gazebo/link_states
-/gazebo/model_states
-/gazebo/parameter_descriptions
-/gazebo/parameter_updates
-/gazebo/performance_metrics
-/gazebo/set_link_state
-/gazebo/set_model_state
-/gazebo_ros_control/pid_gains/panda_joint1/parameter_descriptions
-/gazebo_ros_control/pid_gains/panda_joint1/parameter_updates
-/gazebo_ros_control/pid_gains/panda_joint2/parameter_descriptions
-/gazebo_ros_control/pid_gains/panda_joint2/parameter_updates
-/gazebo_ros_control/pid_gains/panda_joint3/parameter_descriptions
-/gazebo_ros_control/pid_gains/panda_joint3/parameter_updates
-/gazebo_ros_control/pid_gains/panda_joint4/parameter_descriptions
-/gazebo_ros_control/pid_gains/panda_joint4/parameter_updates
-/gazebo_ros_control/pid_gains/panda_joint5/parameter_descriptions
-/gazebo_ros_control/pid_gains/panda_joint5/parameter_updates
-/gazebo_ros_control/pid_gains/panda_joint6/parameter_descriptions
-/gazebo_ros_control/pid_gains/panda_joint6/parameter_updates
-/gazebo_ros_control/pid_gains/panda_joint7/parameter_descriptions
-/gazebo_ros_control/pid_gains/panda_joint7/parameter_updates
-/joint_states
-/panda_controller/command
-/panda_controller/follow_joint_trajectory/cancel
-/panda_controller/follow_joint_trajectory/feedback
-/panda_controller/follow_joint_trajectory/goal
-/panda_controller/follow_joint_trajectory/result
-/panda_controller/follow_joint_trajectory/status
-/panda_controller/state
-/rosout
-/rosout_agg
-/tf
-/tf_static
+roslaunch panda_franka rviz.launch
 ```
 
-### /panda_controller/command
+<p align="center">
+  <img width="663" height="557" src="panda_franka/pictures/rviz_joint_command.png">
+  <br> RViZ - Joint State Puplisher GUI
+</p>
+
+<p align="center">
+  <img width="826" height="72" src="panda_franka/pictures/rviz_rosgraph.png">
+  <br> Node-Topic Graph
+</p>
+
+Topic: /joint_states
+
+Type: sensor_msgs/JointState
 ```bash
 header: 
-  seq: 1
+  seq: 6961
   stamp: 
-    secs: 0
-    nsecs:         0
+    secs: 1684978004
+    nsecs: 704809665
   frame_id: ''
-joint_names: 
+name: 
   - panda_joint1
   - panda_joint2
   - panda_joint3
@@ -121,15 +96,28 @@ joint_names:
   - panda_joint5
   - panda_joint6
   - panda_joint7
-points: 
-  - 
-    positions: [1.57, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    velocities: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    accelerations: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    effort: []
-    time_from_start: 
-      secs: 3
-      nsecs:         0
----
+position: [-0.6403032999999998, 0.3712456799999999, -0.2132412800000001, -2.1155627800000003, -0.7927012799999997, 2.899349, -0.6101713800000002]
+velocity: []
+effort: []
+```
 
+## To launch robot in Gazebo and send joint trajectory to robot using terminal
+```bash
+roslaunch panda_franka gazebo_controller.launch
+rosrun panda_franka joint_angle.py <joint_1> <joint_2> <joint_3> <joint_4> <joint_5> <joint_6> <joint_7>
+```
+<p align="center">
+  <img width="957" height="511" src="panda_franka/pictures/gazebo_joint_command.png">
+  <br> Code Execution
+</p>
+
+<p align="center">
+  <img width="1614" height="521" src="panda_franka/pictures/gazebo_rosgraph.png">
+  <br> Node-Topic Graph
+</p>
+
+## To launch robot in Gazebo and send end-effector positions to robot using terminal
+```bash
+roslaunch panda_franka gazebo_controller.launch
+rosrun panda_franka panda_goal_point.py <end_effector_x> <end_effector_y> <end_effector_z>
 ```
