@@ -30,7 +30,7 @@ rosrun custom_arm joint_angle.py <joint_1> <joint_2> <joint_3> <joint_4>
 </p>
 
 <p align="center">
-  <img width="733" height="410" src="custom_arm/pictures/gazebo_rosgraph.png">
+  <img width="908" height="260" src="custom_arm/pictures/gazebo_rosgraph.png">
   <br> Node-Topic Graph
 </p>
 
