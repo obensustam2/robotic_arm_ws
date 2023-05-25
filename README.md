@@ -35,7 +35,6 @@ rosrun custom_arm joint_angle.py <joint_1> <joint_2> <joint_3> <joint_4>
 </p>
 
 Topic: custom_arm_controller/command  
-
 Type: trajectory_msgs/JointTrajectory
 
 ```bash
@@ -79,7 +78,6 @@ roslaunch panda_franka rviz.launch
 </p>
 
 Topic: /joint_states
-
 Type: sensor_msgs/JointState
 ```bash
 header: 
